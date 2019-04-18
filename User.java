@@ -1,22 +1,27 @@
 package com.banking;
 
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User implements UserInterface {
+public class User implements UserInterface, Serializable {
 
     private String name;
     private int age;
     private int salary;
 
-    private Type type;
+    private transient Type type;
 
     private int total;
 
     private boolean accountExist;
 
     private String email;
+
+    private String streetAddress;
+
+    private String cityStateAddress;
 
     public String getName() {
         return name;
@@ -66,8 +71,31 @@ public class User implements UserInterface {
         return email;
     }
 
+    public String getStreetAddress() {
+        return streetAddress;
+    }
 
-    public User(String name, int age, int salary, Type type, String email) throws InvalidAgeException {
+    public String getCityStateAddress() {
+        return cityStateAddress;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                ", type=" + type +
+                ", total=" + total +
+                ", accountExist=" + accountExist +
+                ", email='" + email + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", cityStateAddress='" + cityStateAddress + '\'' +
+                '}';
+    }
+
+    public User(String name, int age, int salary, Type type, String email, String streetAddress, String cityStateAddress) throws InvalidAgeException {
 
         if (type == Type.SAVING && age < 18) {
             throw new InvalidAgeException("To open a saving account, age should be greater than 18");
@@ -99,6 +127,8 @@ public class User implements UserInterface {
         this.salary = salary;
         this.type = type;
         this.email = email;
+        this.streetAddress = streetAddress;
+        this.cityStateAddress = cityStateAddress;
 
         if (hasAccount()) {
             this.accountExist = true;
