@@ -12,10 +12,11 @@ public class Bank implements BankInterface {
     }
 
 
-    public void withdraw(int amount) {
+    public void withdraw(int amount) throws InvalidBalanceException {
         if (user.isAccountExist()) {
             if (user.getTotal() < amount) {
-                System.out.println("Not enough money left.");
+//                System.out.println("Not enough money left.");
+                throw new InvalidBalanceException("Not enough money left.");
             }
             else {
                 user.setTotal(user.getTotal() - amount);
