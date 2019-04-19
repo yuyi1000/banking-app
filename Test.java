@@ -36,8 +36,9 @@ public class Test {
             t = sc.next();
             System.out.print("Input your email: ");
             email = sc.next();
+            sc.nextLine();
             System.out.print("Input your street address: ");
-            streetAddress = sc.next();
+            streetAddress = sc.nextLine();
 
 
 
@@ -88,6 +89,8 @@ public class Test {
 
 
             Bank bank = new Bank("Chase", user);
+
+            // TODO: take the input from the user in the console.
             bank.deposit(100);
             bank.withdraw(50);
             bank.withdraw(60);

@@ -1,5 +1,7 @@
 package com.banking;
 
+// TODO: show type info in user object, show all info when account is created.
+// TODO: If any info is not correct, not create that user.
 
 import java.io.Serializable;
 import java.util.regex.Matcher;
@@ -13,6 +15,8 @@ public class User implements UserInterface, Serializable {
 
     private transient Type type;
 
+
+    // TODO: total_balance, using a better name
     private int total;
 
     private boolean accountExist;
