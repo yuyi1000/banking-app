@@ -16,8 +16,8 @@ public class User implements UserInterface, Serializable {
     private transient Type type;
 
 
-    // TODO: total_balance, using a better name
-    private int total;
+    
+    private int balance;
 
     private boolean accountExist;
 
@@ -59,12 +59,12 @@ public class User implements UserInterface, Serializable {
         this.type = type;
     }
 
-    public int getTotal() {
-        return total;
+    public int getBalance() {
+        return balance;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     public boolean isAccountExist() {
@@ -91,7 +91,7 @@ public class User implements UserInterface, Serializable {
                 ", age=" + age +
                 ", salary=" + salary +
                 ", type=" + type +
-                ", total=" + total +
+                ", balance=" + balance +
                 ", accountExist=" + accountExist +
                 ", email='" + email + '\'' +
                 ", streetAddress='" + streetAddress + '\'' +
