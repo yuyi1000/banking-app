@@ -16,7 +16,7 @@ public class User implements UserInterface, Serializable {
     private transient Type type;
 
 
-    
+
     private int balance;
 
     private boolean accountExist;

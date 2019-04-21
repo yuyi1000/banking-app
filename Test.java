@@ -19,7 +19,13 @@ public class Test {
         String streetAddress;
         String cityStateAddress;
 
+
         Type type;
+
+        String choice;
+        boolean isDeposit;
+        int amount;
+        String moreTransaction;
 
         try {
 
@@ -39,6 +45,7 @@ public class Test {
             sc.nextLine();
             System.out.print("Input your street address: ");
             streetAddress = sc.nextLine();
+//            sc.close();
 
 
 
@@ -84,17 +91,59 @@ public class Test {
 
             System.out.println(u2);
 
-
-
-
-
             Bank bank = new Bank("Chase", user);
 
-            // TODO: take the input from the user in the console.
-            bank.deposit(100);
-            bank.withdraw(50);
-            bank.withdraw(60);
-            bank.withdraw(30);
+
+            System.out.println("You have " + user.getBalance() + " left.");
+
+
+            // TODO: If use a new scanner, it will return a NoSuchElementException, figure out what happened.
+//            sc = new Scanner(System.in);
+
+
+            while (true) {
+
+                System.out.print("Choose to deposit or withdraw: ");
+                choice = sc.nextLine();
+                if (choice.equalsIgnoreCase("deposit")) {
+                    isDeposit = true;
+                }
+                else if (choice.equalsIgnoreCase("withdraw")) {
+                    isDeposit = false;
+                }
+                else {
+                    System.err.println("not invalid option");
+                    return;
+                }
+
+                System.out.print("Input amount of money: ");
+                amount = sc.nextInt();
+
+                if (isDeposit) {
+                    bank.deposit(amount);
+                }
+                else {
+                    bank.withdraw(amount);
+                }
+
+                System.out.print("Do you need to do more transactions? (type NO if you want to exist): ");
+                sc.nextLine();
+                moreTransaction = sc.nextLine();
+                if (moreTransaction.equalsIgnoreCase("no")) {
+                    break;
+                }
+            }
+
+            sc.close();
+
+
+
+
+
+
+
+
+
 
 
         }
