@@ -1,7 +1,5 @@
 package com.banking;
 
-// TODO: If any info is not correct, not create that user.
-
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
