@@ -136,16 +136,6 @@ public class Test {
 
             sc.close();
 
-
-
-
-
-
-
-
-
-
-
         }
         catch (InvalidAgeException e) {
             System.out.println("Caught an Invalid age exception.");
@@ -156,6 +146,9 @@ public class Test {
             System.out.println("Caught an Invalid balance exception.");
             e.printStackTrace();
 //            System.out.println(e);
+        }
+        catch (InvalidEmailException e) {
+            e.printStackTrace();
         }
 
         catch (InputMismatchException e) {

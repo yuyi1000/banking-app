@@ -120,8 +120,10 @@ public class User implements UserInterface, Serializable {
         Matcher m = p.matcher(email);
 
         if (!m.matches()) {
-            System.out.println("Not a valid email address.");
-            return;
+//            System.out.println("Not a valid email address.");
+//            return;
+            throw new InvalidEmailException("Not a valid email address");
+
         }
 
 
