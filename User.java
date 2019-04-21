@@ -1,6 +1,5 @@
 package com.banking;
 
-// TODO: show type info in user object, show all info when account is created.
 // TODO: If any info is not correct, not create that user.
 
 import java.io.Serializable;
@@ -13,7 +12,7 @@ public class User implements UserInterface, Serializable {
     private int age;
     private int salary;
 
-    private transient Type type;
+    private Type type;
 
 
 
