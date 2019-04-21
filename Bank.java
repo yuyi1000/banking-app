@@ -12,16 +12,30 @@ public class Bank implements BankInterface {
     }
 
 
-    public void withdraw(int amount) throws InvalidBalanceException {
+    public synchronized void withdraw(int amount) {
         if (user.isAccountExist()) {
-            if (user.getBalance() < amount) {
-//                System.out.println("Not enough money left.");
-                throw new InvalidBalanceException("Not enough money left.");
+
+            int flag = 1;
+
+            while (flag != 0) {
+
+                if (user.getBalance() >= amount) {
+                    user.setBalance(user.getBalance() - amount);
+                    flag = 0;
+                    System.out.println(amount + " has been withdrawn from this bank account.");
+                    System.out.println("The new balance is " + user.getBalance());
+                }
+                else {
+                    try {
+                        wait();
+                    }
+                    catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
             }
-            else {
-                user.setBalance(user.getBalance() - amount);
-                System.out.println("The new total is " + user.getBalance());
-            }
+
         }
 //        else {
 //            System.out.println("You don't have an account yet");
@@ -29,10 +43,12 @@ public class Bank implements BankInterface {
     }
 
 
-    public void deposit(int amount) {
+    public synchronized void deposit(int amount) {
         if (user.isAccountExist()) {
             user.setBalance(user.getBalance() + amount);
-            System.out.println("The new total is " + user.getBalance());
+            System.out.println(amount + " has been added to this bank account.");
+            System.out.println("The new balance is " + user.getBalance());
+            notify();
         }
 //        else {
 //            System.out.println("You don't have an account yet");

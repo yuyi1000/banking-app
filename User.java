@@ -12,8 +12,6 @@ public class User implements UserInterface, Serializable {
 
     private Type type;
 
-
-
     private int balance;
 
     private boolean accountExist;

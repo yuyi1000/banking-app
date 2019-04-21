@@ -101,40 +101,53 @@ public class Test {
 //            sc = new Scanner(System.in);
 
 
-            while (true) {
+//            while (true) {
+//
+//                System.out.print("Choose to deposit or withdraw: ");
+//                choice = sc.nextLine();
+//                if (choice.equalsIgnoreCase("deposit")) {
+//                    isDeposit = true;
+//                }
+//                else if (choice.equalsIgnoreCase("withdraw")) {
+//                    isDeposit = false;
+//                }
+//                else {
+//                    System.err.println("not invalid option");
+//                    return;
+//                }
+//
+//                System.out.print("Input amount of money: ");
+//                amount = sc.nextInt();
+//
+//                if (isDeposit) {
+//                    bank.deposit(amount);
+//                }
+//                else {
+//                    bank.withdraw(amount);
+//                }
+//
+//                System.out.print("Do you need to do more transactions? (type NO if you want to exist): ");
+//                sc.nextLine();
+//                moreTransaction = sc.nextLine();
+//                if (moreTransaction.equalsIgnoreCase("no")) {
+//                    break;
+//                }
+//            }
+//
+//            sc.close();
 
-                System.out.print("Choose to deposit or withdraw: ");
-                choice = sc.nextLine();
-                if (choice.equalsIgnoreCase("deposit")) {
-                    isDeposit = true;
-                }
-                else if (choice.equalsIgnoreCase("withdraw")) {
-                    isDeposit = false;
-                }
-                else {
-                    System.err.println("not invalid option");
-                    return;
-                }
 
-                System.out.print("Input amount of money: ");
-                amount = sc.nextInt();
+            BankCustomer bc1 = new BankCustomer(bank, 200, false);
+            BankCustomer bc2 = new BankCustomer(bank, 300, true);
 
-                if (isDeposit) {
-                    bank.deposit(amount);
-                }
-                else {
-                    bank.withdraw(amount);
-                }
+            bc1.start();
+            bc2.start();
 
-                System.out.print("Do you need to do more transactions? (type NO if you want to exist): ");
-                sc.nextLine();
-                moreTransaction = sc.nextLine();
-                if (moreTransaction.equalsIgnoreCase("no")) {
-                    break;
-                }
-            }
 
-            sc.close();
+            bc1.join();
+            bc2.join();
+
+
 
         }
         catch (InvalidAgeException e) {
@@ -154,13 +167,21 @@ public class Test {
         catch (InputMismatchException e) {
             System.out.println("Caught an Input mismatch exception.");
             e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
 
 
         // If the user requirement does not hold, then withdraw and deposit function should not be
