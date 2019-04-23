@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User implements UserInterface, Serializable {
+public class User implements UserInterface, Serializable, Comparable<User> {
+
+
+    private static int count = 0;
+
+    private int accountNumber;
 
     private String name;
     private int age;
@@ -78,11 +83,23 @@ public class User implements UserInterface, Serializable {
         return cityStateAddress;
     }
 
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    @Override
+    public int compareTo(User user) {
+        if (this.accountNumber == user.accountNumber) return 0;
+        if (this.accountNumber > user.accountNumber) return 1;
+        return -1;
+    }
+
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "accountNumber=" + accountNumber +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 ", salary=" + salary +
                 ", type=" + type +
@@ -130,6 +147,7 @@ public class User implements UserInterface, Serializable {
         this.email = email;
         this.streetAddress = streetAddress;
         this.cityStateAddress = cityStateAddress;
+        this.accountNumber = count++;
 
         if (hasAccount()) {
             this.accountExist = true;

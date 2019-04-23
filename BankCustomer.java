@@ -5,6 +5,8 @@ public class BankCustomer extends Thread {
     Bank bank;
     int amount;
 
+    User user;
+
     boolean isDeposit;
 
     public BankCustomer(Bank bank, int amount, boolean isDeposit) {
@@ -16,10 +18,10 @@ public class BankCustomer extends Thread {
     @Override
     public void run() {
         if (isDeposit) {
-            bank.deposit(amount);
+            bank.deposit(amount, user);
         }
         else {
-            bank.withdraw(amount);
+            bank.withdraw(amount, user);
         }
     }
 

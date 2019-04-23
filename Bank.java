@@ -1,18 +1,36 @@
 package com.banking;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Bank implements BankInterface {
 
     private String name;
 
-    private User user;
+//    private User user;
 
-    public Bank(String name, User user) {
+    private List<User> users;
+
+
+    public Bank(String name) {
         this.name = name;
-        this.user = user;
+        this.users = new ArrayList<>();
     }
 
+    public void addUser(User user) {
+        this.users.add(user);
+    }
 
-    public synchronized void withdraw(int amount) {
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void sortUsers() {
+        Collections.sort(this.users);
+    }
+
+    public synchronized void withdraw(int amount, User user) {
         if (user.isAccountExist()) {
 
             int flag = 1;
@@ -43,7 +61,7 @@ public class Bank implements BankInterface {
     }
 
 
-    public synchronized void deposit(int amount) {
+    public synchronized void deposit(int amount, User user) {
         if (user.isAccountExist()) {
             user.setBalance(user.getBalance() + amount);
             System.out.println(amount + " has been added to this bank account.");

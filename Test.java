@@ -91,7 +91,7 @@ public class Test {
 
             System.out.println(u2);
 
-            Bank bank = new Bank("Chase", user);
+            Bank bank = new Bank("Chase");
 
 
             System.out.println("You have " + user.getBalance() + " left.");
