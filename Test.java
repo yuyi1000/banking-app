@@ -33,13 +33,13 @@ public class Test {
         try {
 
 
-            String driver = "com.mysql.jdbc.Driver";
+//            String driver = "com.mysql.jdbc.Driver";
 
             String url = "jdbc:mysql://localhost:3306/banking?autoReconnect=true&useSSL=false";
             String user = "root";
             String password = "flyaway1314";
 
-            Class.forName(driver);
+//            Class.forName(driver);
 
             conn = DriverManager.getConnection(url, user, password);
 
@@ -241,9 +241,9 @@ public class Test {
         catch (SQLException e) {
             e.printStackTrace();
         }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//        catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
         finally {
             try {
                 if (conn != null) {
