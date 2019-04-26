@@ -43,6 +43,11 @@ public class Test {
 
             conn = DriverManager.getConnection(url, user, password);
 
+            String insertUser = "insert into user (Name, Age, Salary, Type, Balance, Email, Street_addr, City_addr)" +
+                    "values (?,?,?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(insertUser);
+
+
             Statement statement = conn.createStatement();
 
             String createUserTable = "create table if not exists user (Account_No int auto_increment, Name varchar(20), " +
@@ -90,12 +95,22 @@ public class Test {
                 new User(name, age, salary, type, email, streetAddress, cityStateAddress);
 
 
-                insertNewUser = "insert into user (Name, Age, Salary, Type, Balance, Email, Street_addr, City_addr)" +
-                        "values ('" + name + "', " + age + ", " + salary + ", '" + t + "', 0, '" + email + "', '" + streetAddress +
-                        "', '" + cityStateAddress + "')";
+//                insertNewUser = "insert into user (Name, Age, Salary, Type, Balance, Email, Street_addr, City_addr)" +
+//                        "values ('" + name + "', " + age + ", " + salary + ", '" + t + "', 0, '" + email + "', '" + streetAddress +
+//                        "', '" + cityStateAddress + "')";
+//
+//                statement.execute(insertNewUser);
 
-                statement.execute(insertNewUser);
+                preparedStatement.setString(1, name);
+                preparedStatement.setInt(2, age);
+                preparedStatement.setInt(3, salary);
+                preparedStatement.setString(4, t);
+                preparedStatement.setInt(5, 0);
+                preparedStatement.setString(6, email);
+                preparedStatement.setString(7, streetAddress);
+                preparedStatement.setString(8, cityStateAddress);
 
+                preparedStatement.executeUpdate();
 
 
                 System.out.print("Input more users? Y or N: " );
