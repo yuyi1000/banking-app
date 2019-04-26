@@ -110,7 +110,9 @@ public class Test {
                 preparedStatement.setString(7, streetAddress);
                 preparedStatement.setString(8, cityStateAddress);
 
-                preparedStatement.executeUpdate();
+                preparedStatement.addBatch();
+
+//                preparedStatement.executeUpdate();
 
 
                 System.out.print("Input more users? Y or N: " );
@@ -120,6 +122,8 @@ public class Test {
 
 
             }
+
+            preparedStatement.executeBatch();
 
 
             String showUsers = "select * from user";
